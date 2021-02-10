@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   namespace :api do
-    resources :articles, only: [:index, :show, :not_found]
+    resources :articles, only: [:index, :show, :create, :update]
+    
   end
+  
 end
