@@ -10,7 +10,6 @@ class Api::ArticlesController < ApplicationController
   end
 
   def create
-
     new_article = Article.create(create_params)
     render json: { 
       response: { 
@@ -19,6 +18,15 @@ class Api::ArticlesController < ApplicationController
       } 
     }, status: 201
   
+  end
+
+  def update
+    article = Article.find(params['id'])
+    render json: {
+      response: {
+        message: "Successfully updated article: #{article.id}"
+      }
+    }
   end
 
   rescue_from ActiveRecord::RecordNotFound, with: :record_not_found

@@ -21,7 +21,7 @@ RSpec.describe 'PUT /api/articles/:id', types: :request do
       }
     end
 
-    it 'responds with a 201 status' do
+    it 'responds with a 204 status' do
       expect(response).to have_http_status 204
     end
 
