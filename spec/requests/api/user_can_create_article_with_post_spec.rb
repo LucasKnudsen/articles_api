@@ -27,7 +27,9 @@ RSpec.describe 'POST /api/articles', types: :request do
       expect(response_json['articles'].first['title']).to eq 'My Title'
       expect(response_json['articles'].first['body']).to eq 'My Body'
     end
+  end
 
-   
+  describe 'unsuccessfully' do
+    
   end
 end

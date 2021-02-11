@@ -16,13 +16,13 @@ RSpec.describe 'PUT /api/articles/:id', types: :request do
       put "/api/articles/#{article.id}", params: {
         article: {
           title: 'New Title',
-          body: 'New body'
+          body: 'New Body'
         }
       }
     end
 
-    it 'responds with a 204 status' do
-      expect(response).to have_http_status 204
+    it 'responds with a 200 status' do
+      expect(response).to have_http_status 200
     end
 
     it 'is expected to return a success message' do
@@ -30,9 +30,11 @@ RSpec.describe 'PUT /api/articles/:id', types: :request do
     end
 
     it 'is expected to have stored the new data correctly' do
-      get '/api/articles'
-      expect(response_json['articles'].first['title']).to eq 'New Title'
-      expect(response_json['articles'].first['body']).to eq 'New Body'
+      get "/api/articles/#{article.id}"
+      response = response_json['article']
+      
+      expect(response['title']).to eq 'New Title'
+      expect(response['body']).to eq 'New Body'
     end
 
    

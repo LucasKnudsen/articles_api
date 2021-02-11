@@ -22,11 +22,14 @@ class Api::ArticlesController < ApplicationController
 
   def update
     article = Article.find(params['id'])
+    article.update(title: params[:article][:title], body: params[:article][:body])
     render json: {
       response: {
-        message: "Successfully updated article: #{article.id}"
+      message: "Successfully updated article: #{article.id}",
+      article: article
       }
     }
+
   end
 
   rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
