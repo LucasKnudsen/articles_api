@@ -10,13 +10,17 @@ class Api::ArticlesController < ApplicationController
   end
 
   def create
-    new_article = Article.create(create_params)
-    render json: { 
-      response: { 
-      message: 'Successfully created new article!', 
-      article: new_article 
-      } 
-    }, status: 201
+    if params[:article][:title] && params[:article][:body]
+      new_article = Article.create(create_params)
+      render json: { 
+        response: { 
+        message: 'Successfully created new article!', 
+        article: new_article 
+        } 
+      }, status: 201
+    else
+      render status: 422
+    end
   
   end
 
