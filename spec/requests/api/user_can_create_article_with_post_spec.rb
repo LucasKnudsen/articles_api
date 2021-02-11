@@ -30,6 +30,21 @@ RSpec.describe 'POST /api/articles', types: :request do
   end
 
   describe 'unsuccessfully' do
-    
+
+    describe 'missing title' do
+      before do
+        post '/api/articles', params: {
+          article: {
+            
+            body: 'My Body'
+          }
+        }
+      end
+
+      it 'is expected to return a 422 status' do
+        binding.pry
+        expect(response).to have_http_status 422
+      end
+    end
   end
 end
