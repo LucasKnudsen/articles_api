@@ -12,13 +12,13 @@ class Api::ArticlesController < ApplicationController
   def create
 
     new_article = Article.create(create_params)
-    render json: 
-      { response: { 
-        message: 'Successfully created new article!', 
-        article: new_article 
-        } 
-      }, status: 201
-    
+    render json: { 
+      response: { 
+      message: 'Successfully created new article!', 
+      article: new_article 
+      } 
+    }, status: 201
+  
   end
 
   rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
