@@ -1,4 +1,6 @@
 class Api::ArticlesController < ApplicationController
+  before_action :authenticate_user!, only: [:create, :update]
+
   def index
     all_articles = Article.all
     render json: { articles: all_articles }
