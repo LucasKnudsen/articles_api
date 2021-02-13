@@ -1,24 +1,11 @@
-# README
+# Articles API challenge
+## Getting up close on CRUD actions, API configurations, and authentication
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+### CRUD Action
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+### Authentication
+```
+As a user
+In order to quality control new articles
+Only logged in users can create articles
+```
