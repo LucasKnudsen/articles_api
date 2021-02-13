@@ -12,7 +12,6 @@ class Api::ArticlesController < ApplicationController
   end
 
   def create
-
     if params[:article][:title] && params[:article][:body]
       new_article = Article.create(create_params)
       render json: { 

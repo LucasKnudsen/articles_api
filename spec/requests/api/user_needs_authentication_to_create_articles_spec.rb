@@ -21,8 +21,12 @@ RSpec.describe 'POST /api/articles', types: :request do
       expect(response).to have_http_status 201
     end
 
-    it 'Responds with an access-token' do
+    it 'responds with an access-token' do
       expect(response.has_header?('access-token')).to eq(true)
+    end
+
+    it 'responds with expected message' do
+      expect(response_json['response']['message']).to eq "Successfully created new article!"
     end
   end
 
