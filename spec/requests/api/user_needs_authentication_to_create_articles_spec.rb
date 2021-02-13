@@ -1,3 +1,6 @@
+require 'rails_helper'
+include ActionController::RespondWith
+
 RSpec.describe 'POST /api/articles', types: :request do
   let(:user) { create(:user) }
   let(:user_credentials) { user.create_new_auth_token }
@@ -15,8 +18,11 @@ RSpec.describe 'POST /api/articles', types: :request do
     end
 
     it 'responds with a 201 status' do
-      
       expect(response).to have_http_status 201
+    end
+
+    it 'Responds with an access-token' do
+      expect(response.has_header?('access-token')).to eq(true)
     end
   end
 
@@ -32,8 +38,11 @@ RSpec.describe 'POST /api/articles', types: :request do
     end
 
     it 'responds with a 401' do
-      binding.pry
       expect(response).to have_http_status 401
+    end
+
+    it 'responds with an appropriate error message' do
+      expect(response_json['errors'].first).to eq 'You need to sign in or sign up before continuing.'
     end
   end
 end

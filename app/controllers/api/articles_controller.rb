@@ -1,4 +1,6 @@
 class Api::ArticlesController < ApplicationController
+  before_action :authenticate_user!, only: [:create, :update]
+
   def index
     all_articles = Article.all
     render json: { articles: all_articles }
@@ -10,6 +12,7 @@ class Api::ArticlesController < ApplicationController
   end
 
   def create
+
     if params[:article][:title] && params[:article][:body]
       new_article = Article.create(create_params)
       render json: { 
