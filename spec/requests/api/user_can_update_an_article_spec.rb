@@ -1,5 +1,6 @@
 RSpec.describe 'PUT /api/articles/:id', types: :request do
-
+  let(:user) { create(:user) }
+  let(:user_credentials) { user.create_new_auth_token }
   let(:article) { create(:article, title: 'Test Title', body: 'Test Body')}
   
   describe 'Test article is correctly created' do
@@ -10,7 +11,6 @@ RSpec.describe 'PUT /api/articles/:id', types: :request do
     end
   end
 
-
   describe 'successfully' do
     before do
       put "/api/articles/#{article.id}", params: {
@@ -18,7 +18,8 @@ RSpec.describe 'PUT /api/articles/:id', types: :request do
           title: 'New Title',
           body: 'New Body'
         }
-      }
+      },
+      headers: user_credentials
     end
 
     it 'responds with a 200 status' do
